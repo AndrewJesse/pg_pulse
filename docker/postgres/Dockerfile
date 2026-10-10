@@ -5,15 +5,15 @@ FROM postgres:${PG_MAJOR}-trixie AS builder
 ARG DEBIAN_FRONTEND=noninteractive
 # hadolint ignore=DL3008
 RUN apt-get update \
-	&& apt-get install -y --no-install-recommends \
-		build-essential \
-		clang \
-		libclang-dev \
-		"postgresql-server-dev-${PG_MAJOR}" \
-		curl \
-		ca-certificates \
-		git \
-	&& rm -rf /var/lib/apt/lists/*
+  && apt-get install -y --no-install-recommends \
+  build-essential \
+  clang \
+  libclang-dev \
+  "postgresql-server-dev-${PG_MAJOR}" \
+  curl \
+  ca-certificates \
+  git \
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /src
 COPY . /src
