@@ -1,0 +1,15 @@
+name: infra
+
+on:
+  pull_request:
+    paths:
+      - infra/**
+  push:
+    branches: [main]
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: 'echo "TODO: terraform plan with cost guard"'

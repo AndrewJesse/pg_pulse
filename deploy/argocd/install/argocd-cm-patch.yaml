@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
+stringData:
+  resource.customizations: |
+    argoproj.io/Application:
+      health.lua: |
+        hs = {}
+        hs.status = "Progressing"
+        if obj.status and obj.status.sync and obj.status.sync.status == "Synced" then
+          hs.status = "Healthy"
+        end
+        return hs
+    postgresql.cnpg.io/Cluster:
+      health.lua: |
+        hs = {}
+        if obj.status and obj.status.phase then
+          if obj.status.phase == "ClusterHealthy" then
+            hs.status = "Healthy"
+          elseif obj.status.phase == "ClusterProgressing" then
+            hs.status = "Progressing"
+          else
+            hs.status = "Degraded"
+          end
+        else
+          hs.status = "Progressing"
+        end
+        return hs

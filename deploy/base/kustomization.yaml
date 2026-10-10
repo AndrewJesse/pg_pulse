@@ -1,0 +1,14 @@
+resources:
+  - namespace.yaml
+  - db/cluster.yaml
+  - shards/shard-0.yaml
+  - shards/shard-1.yaml
+  - router/deployment.yaml
+  - router/service.yaml
+  - router/configmap.yaml
+  - router/networkpolicy.yaml
+  - router/pdb.yaml
+  - rules-engine/deployment.yaml
+  - rules-engine/configmap.yaml
+configurations:
+  - kustomizeconfig/cnpg-images.yaml

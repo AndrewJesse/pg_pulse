@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pg-pulse-dev
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: pg-pulse
+  source:
+    repoURL: https://github.com/OWNER/REPO
+    targetRevision: main
+    path: deploy/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pg-pulse-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

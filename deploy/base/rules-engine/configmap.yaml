@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rules-engine-config
+  namespace: pg-pulse-dev
+data:
+  example.ts: |
+    export function evaluate(alert) {
+      return { notify: false, message: alert.check_name };
+    }

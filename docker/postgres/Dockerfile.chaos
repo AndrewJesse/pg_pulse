@@ -1,0 +1,16 @@
+ARG PG_MAJOR=18
+
+FROM postgres:${PG_MAJOR}-trixie AS builder
+ARG DEBIAN_FRONTEND=noninteractive
+# hadolint ignore=DL3008
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends \
+		build-essential \
+		curl \
+		ca-certificates \
+		git \
+	&& rm -rf /var/lib/apt/lists/*
+
+WORKDIR /src
+COPY . /src
+RUN echo "TODO: build PostgreSQL 18 from source with --enable-debug --enable-cassert CFLAGS=-O0 -g" &&     echo "TODO: build pulse_core with PULSE_CHAOS=1"

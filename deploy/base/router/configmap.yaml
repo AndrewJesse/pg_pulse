@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: router-config
+  namespace: pg-pulse-dev
+data:
+  config.yaml: |
+    shards:
+      - name: shard-0
+        host: pulse-shard-0-rw
+        port: 5432
+      - name: shard-1
+        host: pulse-shard-1-rw
+        port: 5432

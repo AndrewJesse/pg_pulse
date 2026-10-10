@@ -1,0 +1,13 @@
+name: chaos
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  chaos:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: 'echo "TODO: run chaos suite on GitHub runners"'

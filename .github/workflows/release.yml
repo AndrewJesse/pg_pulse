@@ -1,0 +1,13 @@
+name: release
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: 'echo "TODO: build and release multi-arch images"'

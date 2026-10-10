@@ -1,0 +1,36 @@
+SHOW pulse.max_entries;
+ pulse.max_entries 
+-------------------
+ 1000
+(1 row)
+
+SHOW pulse.track;
+ pulse.track 
+-------------
+ top
+(1 row)
+
+SET pulse.track = 'invalid';
+ERROR:  invalid value for parameter "pulse.track": "invalid"
+HINT:  Available values: none, top, all.
+SHOW pulse.track;
+ pulse.track 
+-------------
+ top
+(1 row)
+
+SET pulse.track = none;
+SHOW pulse.track;
+ pulse.track 
+-------------
+ none
+(1 row)
+
+SET pulse.track = 'all';
+SHOW pulse.track;
+ pulse.track 
+-------------
+ all
+(1 row)
+
+RESET pulse.track;

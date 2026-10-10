@@ -1,0 +1,43 @@
+name: ci
+
+env:
+  PG_MAJOR: "18"
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install lint tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-format cppcheck shellcheck yamllint
+          curl -fsSL https://github.com/hadolint/hadolint/releases/download/v2.15.1/hadolint-Linux-x86_64 \
+            -o /tmp/hadolint
+          sudo install -m 0755 /tmp/hadolint /usr/local/bin/hadolint
+      - run: make lint
+
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install PostgreSQL 18
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-common
+          sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
+          sudo apt-get update
+          sudo apt-get install -y postgresql-${PG_MAJOR} postgresql-server-dev-${PG_MAJOR}
+      - name: Install cargo-pgrx
+        run: cargo install cargo-pgrx --version 0.19.0 --locked
+      - name: Initialize pgrx
+        run: cargo pgrx init --pg${PG_MAJOR} "$(command -v pg_config)"
+      - run: make build PG_CONFIG="$(command -v pg_config)"
+      - run: make test-c PG_CONFIG="$(command -v pg_config)"

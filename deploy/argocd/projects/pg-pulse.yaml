@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: pg-pulse
+  namespace: argocd
+spec:
+  destinations:
+    - namespace: cnpg-system
+      server: https://kubernetes.default.svc
+    - namespace: pg-pulse-dev
+      server: https://kubernetes.default.svc
+    - namespace: pg-pulse-prod
+      server: https://kubernetes.default.svc
+  sourceRepos:
+    - https://github.com/OWNER/REPO
+    - https://charts.cloudnative-pg.io

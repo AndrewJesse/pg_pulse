@@ -1,0 +1,10 @@
+[workspace]
+members = ["router", "rules-engine"]
+resolver = "2"
+exclude = ["extensions/pulse_health"]
+
+[workspace.package]
+edition = "2021"
+license = "Apache-2.0"
+
+[workspace.dependencies]

@@ -1,0 +1,31 @@
+CREATE EXTENSION pulse_core;
+SELECT 1;
+ ?column? 
+----------
+        1
+(1 row)
+
+SELECT 1;
+ ?column? 
+----------
+        1
+(1 row)
+
+SELECT count(*) > 0 AS has_entries FROM pulse.queries();
+ has_entries 
+-------------
+ t
+(1 row)
+
+SELECT bool_or(calls >= 2) AS repeated_query FROM pulse.queries();
+ repeated_query 
+----------------
+ t
+(1 row)
+
+SELECT bool_or(rows > 0 AND total_ms > 0 AND last_seen IS NOT NULL AND min_ms <= mean_ms AND mean_ms <= max_ms) AS complete_stats FROM pulse.queries();
+ complete_stats 
+----------------
+ t
+(1 row)
+

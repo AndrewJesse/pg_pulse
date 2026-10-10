@@ -1,0 +1,12 @@
+SELECT pulse.reset();
+ reset 
+-------
+ 
+(1 row)
+
+SELECT count(*) = 1 AS reset_cleared_previous_entries FROM pulse.queries();
+ reset_cleared_previous_entries 
+--------------------------------
+ t
+(1 row)
+

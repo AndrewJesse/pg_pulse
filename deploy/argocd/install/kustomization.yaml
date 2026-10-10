@@ -1,0 +1,5 @@
+resources:
+  - https://raw.githubusercontent.com/argoproj/argo-cd/v3.5.0/manifests/install.yaml
+patches:
+  - path: argocd-cm-patch.yaml
+  - path: small-node-patch.yaml

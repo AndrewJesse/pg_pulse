@@ -1,0 +1,5 @@
+comment = 'Postgres health worker and alerting'
+default_version = '0.1.0'
+module_pathname = '$libdir/pulse_health'
+relocatable = false
+superuser = true

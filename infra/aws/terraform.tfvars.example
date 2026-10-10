@@ -1,0 +1,9 @@
+region = "us-east-1"
+instance_type = "t4g.large"
+root_volume_gb = 30
+use_spot = false
+repo_url = "https://github.com/OWNER/REPO.git"
+git_ref = "main"
+argocd_version = "3.5.0"
+k3s_version = "v1.31.0+k3s1"
+budget_email = "you@example.com"

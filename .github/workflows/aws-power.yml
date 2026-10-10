@@ -1,0 +1,16 @@
+name: aws-power
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: start | stop | status
+        required: true
+        default: status
+
+jobs:
+  power:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: 'echo "TODO: AWS power workflow"'

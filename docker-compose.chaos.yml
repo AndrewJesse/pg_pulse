@@ -1,0 +1,13 @@
+services:
+  pulse-main-chaos:
+    build:
+      context: .
+      dockerfile: docker/postgres/Dockerfile.chaos
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: chaos
+    ulimits:
+      core: -1
+    cap_add:
+      - SYS_PTRACE

@@ -1,0 +1,9 @@
+resources:
+  - ../../base
+images:
+  - name: ghcr.io/OWNER/pg-pulse-postgres
+    newTag: latest
+  - name: ghcr.io/OWNER/pg-pulse-router
+    newTag: latest
+  - name: ghcr.io/OWNER/pg-pulse-rules
+    newTag: latest

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euxo pipefail
+apt-get update
+apt-get install -y curl jq
+export DEBIAN_FRONTEND=noninteractive
+mkdir -p /opt/pg-pulse
+cat <<'EOF' > /var/log/pg-pulse-bootstrap.log
+TODO: install k3s, clone repo, run Argo CD bootstrap, store kubeconfig in SSM.
+EOF

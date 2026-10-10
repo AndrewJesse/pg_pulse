@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: router
+  namespace: pg-pulse-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: router
+  template:
+    metadata:
+      labels:
+        app: router
+    spec:
+      containers:
+        - name: router
+          image: ghcr.io/OWNER/pg-pulse-router:latest
+          ports:
+            - containerPort: 6432
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 9090
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 9090

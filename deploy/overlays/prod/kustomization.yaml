@@ -1,0 +1,5 @@
+resources:
+  - ../../base
+images:
+  - name: ghcr.io/OWNER/pg-pulse-postgres
+    newTag: prod

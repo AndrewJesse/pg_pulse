@@ -1,0 +1,12 @@
+resources:
+  - ../../base
+bases:
+  - ../../base
+patches:
+  - target:
+      kind: Cluster
+      name: pulse-main
+    patch: |
+      - op: replace
+        path: /spec/instances
+        value: 1
